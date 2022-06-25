@@ -1,0 +1,22 @@
+C++: void randShuffle(InputOutputArray dst, double iterFactor=1., RNG* rng=0 )
+Python: cv2.randShuffle(dst[, iterFactor]) → None
+Parameters:	
+dst – input/output numerical 1D array.
+iterFactor – scale factor that determines the number of random swap operations (see the details below).
+rng – optional random number generator used for shuffling; if it is zero, theRNG() () is used instead.
+The function randShuffle shuffles the specified 1D array by randomly choosing pairs of elements and swapping them. The number of such swap operations will be dst.rows*dst.cols*iterFactor .
+
+
+random_shuffle!
+emplate <class RandomAccessIterator, class RandomNumberGenerator>
+  void random_shuffle (RandomAccessIterator first, RandomAccessIterator last,
+                       RandomNumberGenerator& gen)
+{
+  iterator_traits<RandomAccessIterator>::difference_type i, n;
+  n = (last-first);
+  for (i=n-1; i>0; --i) {
+    swap (first[i],first[gen(i+1)]);
+  }
+}
+default of this function is using rand()!
+總結:因為是使用rand()，不設seed則打亂的順序在同一個平台上是一樣的

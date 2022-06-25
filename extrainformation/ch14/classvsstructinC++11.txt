@@ -1,0 +1,4 @@
+in C++11
+there only two difference between class and structure!
+1.it is leagal to initialize the variable in the structure but class still need a constructor!(but in c++14 class will also be ok)
+2.structure use the stack memory but class use heap memory

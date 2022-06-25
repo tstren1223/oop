@@ -1,0 +1,13 @@
+The basic tradeoff between arrays and vectors regards performance vs flexibility.
+
+Arrays are less flexible (i.e. size to be fixed at compile time, no resize) but can provide better performance than vectors which are much more flexible.
+
+In C++ you have 2 kinds of arrays
+
+the C-style arrays allowing for both static and dynamic allocation of contiguous memory but without the interface of C++ standard container
+the C++ standardized (i.e. class version making use of templates) version of array defined as std::array which allows for just static allocation as its size is template parameter (hence must be known at compile time) providing the C++ standard container interface
+and 1 kind of vector
+
+the C++ standardized version of vector defined as std::vector which allows for dynamic allocation and automatic resizing and provides the C++ standard container interface
+
+SO,in standard c++,we should use array for fixed size and vector for dynamic size!

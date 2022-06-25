@@ -1,0 +1,15 @@
+the trouble is that NULL is a bit ambiguous.
+While it is semantically a pointer, it can be of integral type.
+
+18.2 Types [support.types]
+3 The macro NULL is an implementation-defined C++ null pointer constant in this International Standard (4.10).
+
+4.10 Pointer conversions [conv.ptr]
+1 A null pointer constant is an integer literal (2.14.2) with value zero or a prvalue of type std::nullptr_t.
+
+所以在oop使用NULL可指的是int 0 or nullptr(零指標) ------>vim預設沒有進行轉型是nullptr故會造成trouble!
+There are 3 cases for NULL: 
+1. It's used in a pointer context. All good. 
+2. It is used in a non-pointer context and defined as nullptr_t{}. A hard error. Cannot happen if the receiving type is deduced, like for a template. 
+3. It is used in a non-pointer context and defined as 0. This is the semantic error the warning is about. And it's important that it's NULL, because passing a plain integer literal as an int argument is somewhat expected.
+所以要在oop使用NULL代表0可以直接打0 or (int)NULL!

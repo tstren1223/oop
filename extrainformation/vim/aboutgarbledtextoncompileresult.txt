@@ -1,0 +1,7 @@
+1.type locale on you virtual box to check all language systems used in this operation system
+2.try to change them all to en_US UTF-8(the things between en_ and UTF-8 can be different but just make sure all areas use the same language system!)
+3.type export LANG=en_XX(can be GB US or others depending on your chosen language system) in  .bashrc file
+
+the successful outcome is that when you use g++ to compile,it can correctly show 'int main' in the end of the first line!
+
+

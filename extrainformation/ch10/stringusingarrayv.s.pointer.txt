@@ -1,0 +1,10 @@
+用array表示的話，只有在一開始宣告時可以用=" XXX~"這類的賦值;
+後面的話只能用strcpy或一個一個打上去!
+用pointer的話，一開始可以用="XXX~"
+後面也可以用一樣的賦值(主要是內建創立另一個string)
+但如果要一個一個打或者是用像strcpy等string涵式就需要給new!
+-----在vim裡面---
+在這裏面的話，基本上pointer就是pointer無法直接賦值"XXX~"
+
+使用上來說，
+strcpy只能用在陣列，strcmp可用在陣列以及指標，strtok只用在指標，strchr or strstr都只用在指標。

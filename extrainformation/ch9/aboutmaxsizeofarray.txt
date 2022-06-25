@@ -1,0 +1,36 @@
+//for static array
+Qualitatively the maximum size of the non-dynamically allocated array depends on the amount of RAM that you have. Also it depends on the type of the array, e.g. an int may be 4 bytes while a double may be 8 bytes (they are also system dependent), thus you will be able to have an array that is double in number of elements if you use int instead of double.
+
+Having said that and keeping in mind that sometimes numbers are indeed important, here is a very noobish code snippet to help you extract the maximum number in your system.
+try:
+#include <stdio.h>
+#include <stdlib.h>
+
+#define UPPER_LIMIT 10000000000000 // a very big number
+
+int main (int argc, const char * argv[])
+{
+    long int_size = sizeof(int);
+    for (int i = 1; i < UPPER_LIMIT; i++)
+    {
+        int c[i];
+        for (int j = 0; j < i; j++)
+        {
+            c[j] = j;
+        }
+        printf("You can set the array size at %d, which means %ld bytes. \n", c[i-1], int_size*c[i-1]);
+    }    
+}
+//for dynamic array
+here are two limits, both not enforced by C++ but rather by the hardware.
+
+The first limit (should never be reached) is set by the restrictions of the size type used to describe an index in the array (and the size thereof). It is given by the maximum value the system's std::size_t can take. This data type should always be the largest integer type of a system.
+
+The other limit is a physical memory limit. The larger your objects in the array are, the sooner this limit is reached because memory is full. For example, a vector<int> of a given size n typically takes about four times as much memory as an array of type vector<char> (minus a small constant value). Therefore, a vector<char> may contain more items than a vector<int> before memory is full. The same counts for the native C-style arrays int[] and char[].
+
+Additionally, this upper limit may be influenced by the type of allocator used to construct the vector because an allocator is free to manage memory any way it wants. A very odd but nontheless conceivable allocator could pool memory in such a way that identical instances of an object share resources. This way, you could insert a lot of identical objects into a container that would otherwise use up all the available memory.
+
+Apart from that, C++ doesn't enforce any limits.
+
+so:
+動態陣列的可宣告數目>>靜態陣列!

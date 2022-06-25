@@ -1,0 +1,24 @@
+用vim 編輯.vimrc
+把以下輸入進去:
+set encoding=utf-8
+        set fileencodings=ucs-bom,utf-8,cp936,gb18030,latin1
+        set termencoding=gb18030
+        set expandtab
+        set ts=4
+        set shiftwidth=4
+        set nu
+        syntax on
+
+        if has('mouse')
+        set mouse-=a
+        endif
+或以下:
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+ set termencoding=utf-8
+ set encoding=utf-8
+或者
+set encoding=utf-8 nobomb
+  set termencoding=utf-8
+  set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
+  set fileformats=unix,dos,mac
+若再無法解決，建議自行上網查其他方法!

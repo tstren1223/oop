@@ -1,0 +1,22 @@
+for stack setup:(remember to create new into head)
+p->data=d;
+p->next=h;
+*h=p;
+for queue setup:(remember to create new into tail)
+head=tail=dummy node
+{
+	p->next=NULL;
+	tail->next=p;
+	tail=p;
+}
+p=head;
+head=head->next;
+free(p);
+reverse for stack or queue:
+{
+r=q;//q=pre,r=pre
+q=p;//q=now
+p=p->next;
+q->next=r;
+}
+head=q;

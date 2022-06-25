@@ -1,0 +1,54 @@
+我們在最初學習C++語言時就接觸到"cout<<endl;"這樣的語句。我們都知道endl表示換行的意思。我一直習慣這樣使用，卻並不是清楚其內部實現是怎麼樣的。今天看《C++ Standard Library, Sec.13.6.1》，才真正弄明白。
+
+首先，endl是一個操作符（Manipulators），但我們必須知道endl是一個什麼型別的變數。endl是跟在”<<“運算子後面，故endl應該是一個引數。其實endl是一個函式名，它是一個"<<"運算子過載函式中的引數，引數型別為函式指標。下面我們看下內部函式實現。
+
+ostream& ostream::operator << ( ostream& (*op)(ostream&))
+
+{
+
+// call the function passed as parameter with this stream as theargument
+
+return (*op) (*this);
+
+}
+
+std::ostream& std::endl (std::ostream& strm)
+
+{
+
+    // write newline
+
+    strm.put('\n');
+
+    // flush the output buffer
+
+    strm.flush();
+
+    // return strm to allowchaining
+
+    return strm;
+
+}
+
+可以看出，運算子過載函式中的函式引數為一個函式指標，其指向一個輸入輸出均為ostream類引用的函式。而endl正是這樣一個函式。所以我們在執行"cout<<endl;"語句時，endl是一個函式引數，型別為函式指標。然後會執行”return (*endl) (*this);“語句，即執行endl函式。
+
+endl函式輸出一個換行符，並重新整理輸出緩衝區。
+這樣我們知道在標準庫中endl是作為一個函式實現的，顯然我們也可以直接呼叫這一函式。我們看下面的測試程式：
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+
+{
+
+cout<<endl;
+
+endl(cout);
+
+return 0;
+
+}
+
+其輸出為兩個空行。”cout<<endl"中，endl是一個型別為函式指標的函式引數，通過運算子過載函式間接呼叫了endl函式。而“endl(cout)”中，endl是函式名，直接呼叫了endl函式。
